@@ -1,6 +1,6 @@
 package package_2;
 
-import org.junit.jupiter.api.Test;
+import org.testng.annotations.Test;
 
 public class Test6 {
     @Test

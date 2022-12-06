@@ -16,9 +16,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>5.9.1</version>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.6.1</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
