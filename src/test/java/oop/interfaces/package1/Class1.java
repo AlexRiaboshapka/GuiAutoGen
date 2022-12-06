@@ -1,6 +1,7 @@
 package oop.interfaces.package1;
 
-import org.junit.jupiter.api.Test;
+
+import org.testng.annotations.Test;
 
 public class Class1 extends Class2 {
 
