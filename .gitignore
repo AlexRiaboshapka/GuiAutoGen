@@ -8,6 +8,10 @@
 #output files
 target
 
+# allure-report
+ allure-results
+ build
+
 # Log file
 *.log
 
