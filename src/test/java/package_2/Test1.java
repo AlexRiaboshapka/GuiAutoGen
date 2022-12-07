@@ -9,6 +9,7 @@ public class Test1 {
         System.out.println(getResult(testValue));
         System.out.println(getCalcResult(x, y));
         System.out.println(getTextResult(testValue, x));
+
     }
 
     public static String getResult(String test) {
