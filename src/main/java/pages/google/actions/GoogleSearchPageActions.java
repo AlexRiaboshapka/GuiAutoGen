@@ -1,19 +1,19 @@
 package pages.google.actions;
 
 import io.qameta.allure.Step;
-import lombok.extern.slf4j.Slf4j;
+import logger.CustomLogger;
 import pages.google.locators.GoogleSearchPageLocators;
 
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.sleep;
 
-@Slf4j
+
 public class GoogleSearchPageActions extends GoogleSearchPageLocators {
     @Step
     public void setValueForInputSearch(String text) {
         inputSearch.sendKeys(text);
-        log.info(text);
+        CustomLogger.logger.info(text);
     }
 
     @Step
@@ -30,7 +30,6 @@ public class GoogleSearchPageActions extends GoogleSearchPageLocators {
             }
         }
     }
-
     @Step
     public void clickAcceptCookies() {
         acceptCookies.click();

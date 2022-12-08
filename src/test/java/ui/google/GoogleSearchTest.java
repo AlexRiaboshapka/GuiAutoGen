@@ -9,6 +9,7 @@ import static com.codeborne.selenide.Selenide.open;
 public class GoogleSearchTest extends AbstractBaseTest {
     private final String googleSearchUrl = "https://www.google.com/";
     private final String searchText = "Selenide";
+    private final String googleSearchResultText = "Selenide: concise UI tests in Java";
 
     @Test
     public void checkGoogleSearchResult() {
@@ -18,6 +19,7 @@ public class GoogleSearchTest extends AbstractBaseTest {
         googleSearchPage.clickAcceptCookies();
         googleSearchPage.setValueForInputSearch(searchText);
         googleSearchPage.clickSearchButton();
-
+        googleSearchResultPage.countSearchResults();
+        googleSearchResultPage.checkEachSearchResult(googleSearchResultText);
     }
 }

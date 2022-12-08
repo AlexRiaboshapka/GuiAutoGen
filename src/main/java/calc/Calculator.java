@@ -1,13 +1,13 @@
 package calc;
 
-import lombok.extern.slf4j.Slf4j;
+import logger.CustomLogger;
 
-@Slf4j
+
 public class Calculator {
 
     public Double getSum(Double a, Double b) {
         Double sum = a + b;
-        log.info("Log message from get sum: " + sum);
+        CustomLogger.logger.info("Log message from get sum: " + sum);
         return sum;
     }
 
