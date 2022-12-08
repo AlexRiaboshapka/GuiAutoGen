@@ -9,7 +9,7 @@
 target
 
 # allure-report
- /allure-results/
+ allure-results/
  build/
 
 # Log file

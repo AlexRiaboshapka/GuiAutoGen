@@ -1,11 +1,13 @@
 package ui.google;
 
 import com.codeborne.selenide.Configuration;
+import listener.CustomListener;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import ui.common.AbstractBaseTest;
 
 import static com.codeborne.selenide.Selenide.open;
-
+@Listeners(CustomListener.class)
 public class GoogleSearchTest extends AbstractBaseTest {
     private final String googleSearchUrl = "https://www.google.com/";
     private final String searchText = "Selenide";
@@ -13,7 +15,6 @@ public class GoogleSearchTest extends AbstractBaseTest {
 
     @Test
     public void checkGoogleSearchResult() {
-        Configuration.timeout = 60000;
 
         open(googleSearchUrl);
         googleSearchPage.clickAcceptCookies();
