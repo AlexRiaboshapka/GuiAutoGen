@@ -6,11 +6,13 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import pages.google.actions.GoogleSearchPageActions;
 import pages.google.actions.GoogleSearchResultPageActions;
+import pages.wikipedia.actions.WikipediaMainPageActions;
 
 public class AbstractBaseTest {
+    public RunnerConfig config = new RunnerConfig();
     public GoogleSearchPageActions googleSearchPage = new GoogleSearchPageActions();
     public GoogleSearchResultPageActions googleSearchResultPage = new GoogleSearchResultPageActions();
-    public RunnerConfig config = new RunnerConfig();
+    public WikipediaMainPageActions wikipediaMainPage = new WikipediaMainPageActions();
 
     @BeforeClass
     @Parameters({"projectId", "Browser", "browserVersion"})
