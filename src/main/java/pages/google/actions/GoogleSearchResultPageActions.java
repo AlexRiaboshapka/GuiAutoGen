@@ -8,6 +8,7 @@ import pages.google.locators.GoogleSearchResultPageLocators;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+import static helper.CommonSteps.getAndAttachScreenshot;
 
 
 public class GoogleSearchResultPageActions extends GoogleSearchResultPageLocators {
@@ -27,6 +28,7 @@ public class GoogleSearchResultPageActions extends GoogleSearchResultPageLocator
                 break;
             }
         }
+        getAndAttachScreenshot();
         Assert.assertTrue(testPassed, "Text not found: " + text);
     }
 }
