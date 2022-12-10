@@ -10,7 +10,7 @@ import static helper.CsvHelper.parseCsv;
 import static helper.CsvHelper.writeToCsv;
 
 public class CsvExample {
-    private final String csvPath = "target/users.csv";
+    private final String csvPath = "src/test/resources/datafiles/users.csv";
     private final String userName = "User1";
     private final String userPass = "User1Pass123";
 
