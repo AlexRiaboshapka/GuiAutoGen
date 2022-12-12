@@ -8,6 +8,7 @@ import logger.CustomLogger;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static global.Global.globalModeDebug;
 
 public class RunnerConfig {
     @Step
@@ -18,7 +19,7 @@ public class RunnerConfig {
         Configuration.browserSize = "1920x1080";
         Configuration.browser = "Chrome";
         Configuration.browserVersion = "107";
-        if (false) {
+        if (!globalModeDebug) {
             Configuration.remote = "http://localhost:4444/wd/hub";
             Configuration.browserCapabilities.setCapability("enableVNC", false);
             Configuration.browserCapabilities.setCapability("enableVideo", false);

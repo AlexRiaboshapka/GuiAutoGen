@@ -13,7 +13,7 @@ import static helper.CommonSteps.getAndAttachScreenshot;
 
 public class GoogleSearchResultPageActions extends GoogleSearchResultPageLocators {
     private int amountOfSearchResults;
-    private boolean testPassed = false;
+
 
     @Step
     public void countSearchResults() {
@@ -22,6 +22,7 @@ public class GoogleSearchResultPageActions extends GoogleSearchResultPageLocator
     }
 
     public void checkEachSearchResult(String text) {
+        boolean testPassed = false;
         CustomLogger.logger.info(text);
         for (int i = 1; i <= amountOfSearchResults; i++) {
             if ($(byXpath(searchResults + "[" + i + "]")).getText().equals(text)) {

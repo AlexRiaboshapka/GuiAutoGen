@@ -13,6 +13,7 @@ public class GoogleSearchPageActions extends GoogleSearchPageLocators {
     @Step
     public void setValueForInputSearch(String text) {
         inputSearch.sendKeys(text);
+        sleep(500);
         CustomLogger.logger.info(text);
     }
 
@@ -20,7 +21,7 @@ public class GoogleSearchPageActions extends GoogleSearchPageLocators {
     public void clickSearchButton() {
         for (int i = 0; i < 8; i++) {
             if ($(byXpath(buttonSearch)).isDisplayed()) {
-                $(byXpath(buttonSearch)).click();
+                $(byXpath(buttonSearch + "[1]")).click();
                 CustomLogger.logger.info("- ok");
                 break;
             } else if ($(byXpath(buttonSearch + "[2]")).isDisplayed()) {
