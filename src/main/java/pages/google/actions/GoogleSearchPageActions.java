@@ -18,20 +18,27 @@ public class GoogleSearchPageActions extends GoogleSearchPageLocators {
 
     @Step
     public void clickSearchButton() {
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 8; i++) {
             if ($(byXpath(buttonSearch)).isDisplayed()) {
                 $(byXpath(buttonSearch)).click();
+                CustomLogger.logger.info("- ok");
                 break;
             } else if ($(byXpath(buttonSearch + "[2]")).isDisplayed()) {
                 $(byXpath(buttonSearch + "[2]")).click();
+                CustomLogger.logger.info("- ok");
                 break;
             } else {
                 sleep(1000);
             }
         }
     }
+
     @Step
     public void clickAcceptCookies() {
-        acceptCookies.click();
+        if (acceptCookies.isDisplayed()) {
+            acceptCookies.click();
+        }
     }
+
 }
+

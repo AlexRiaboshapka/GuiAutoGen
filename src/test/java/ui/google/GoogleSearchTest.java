@@ -1,6 +1,7 @@
 package ui.google;
 
 import listener.CustomListener;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import ui.common.AbstractBaseTest;
@@ -13,11 +14,14 @@ public class GoogleSearchTest extends AbstractBaseTest {
     private final String searchText = "Selenide";
     private final String googleSearchResultText = "Selenide: concise UI tests in Java";
 
-    @Test
-    public void checkGoogleSearchResult() {
-
+    @BeforeMethod
+    public void setUp() {
         open(googleSearchUrl);
         googleSearchPage.clickAcceptCookies();
+    }
+
+    @Test
+    public void checkGoogleSearchResult() {
         googleSearchPage.setValueForInputSearch(searchText);
         googleSearchPage.clickSearchButton();
         googleSearchResultPage.countSearchResults();

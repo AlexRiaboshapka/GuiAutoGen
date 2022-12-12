@@ -39,11 +39,11 @@ Enter the size: 3
             value++;
         }
 
-        int iMax = a.length - 1;
+/*        int iMax = a.length - 1;
         if (iMax == -1) {
             buf.append("[]");
             return;
-        }
+        }*/
         System.out.println(Arrays.deepToString(two));
         //printSpiral(a);
     }

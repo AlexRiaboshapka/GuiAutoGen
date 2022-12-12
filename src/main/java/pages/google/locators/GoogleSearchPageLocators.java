@@ -7,6 +7,6 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class GoogleSearchPageLocators {
     public final SelenideElement inputSearch = $(byXpath("//input[@name='q']"));
-    public final SelenideElement acceptCookies = $(byXpath("//button//*[contains(text(), 'Aceptar todo')]"));
-    public final String buttonSearch = "(//input[@value='Buscar con Google'])";
+    public final SelenideElement acceptCookies = $(byXpath("//button[@id='L2AGLb']"));
+    public final String buttonSearch = "(//input[@name='btnK'])";
 }

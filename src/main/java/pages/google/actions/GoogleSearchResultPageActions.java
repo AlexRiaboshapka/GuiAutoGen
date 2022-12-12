@@ -18,12 +18,14 @@ public class GoogleSearchResultPageActions extends GoogleSearchResultPageLocator
     @Step
     public void countSearchResults() {
         amountOfSearchResults = $$(byXpath(searchResults)).size();
+        CustomLogger.logger.info(amountOfSearchResults);
     }
 
     public void checkEachSearchResult(String text) {
         CustomLogger.logger.info(text);
         for (int i = 1; i <= amountOfSearchResults; i++) {
             if ($(byXpath(searchResults + "[" + i + "]")).getText().equals(text)) {
+                CustomLogger.logger.info("Text is present: " + text + " in index: " + i);
                 testPassed = true;
                 break;
             }

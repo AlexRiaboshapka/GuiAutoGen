@@ -31,7 +31,7 @@ target
 hs_err_pid*
 
 
- *credentials.json
+*credentials.json
 tokens/
 .idea/
 target/
