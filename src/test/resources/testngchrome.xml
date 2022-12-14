@@ -6,8 +6,8 @@
     </listeners>
     <parameter name="projectId" value="1"/>
     <test name="Google Search">
-        <parameter name="browser" value="${Browser}"/>
-        <parameter name="browserVersion" value="${BrowserVersion}"/>
+        <parameter name="browser" value="Chrome"/>
+        <parameter name="browserVersion" value="108"/>
         <packages>
             <package name="ui.cita"/>
         </packages>
