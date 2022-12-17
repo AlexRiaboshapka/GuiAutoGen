@@ -3,46 +3,50 @@ package pages.cita.actions;
 import io.qameta.allure.Step;
 import logger.CustomLogger;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
 import pages.cita.locators.CitaPreviaLocators;
+
 import java.util.Random;
 
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.sleep;
 import static helper.CommonSteps.getAndAttachScreenshot;
 
 public class CitaPreviaActions extends CitaPreviaLocators {
-    int sleepResult;
+    public static int sleepResult;
 
-    @BeforeMethod
     public void createRandomSleep() {
         Random r = new Random();
         int low = 2000;
         int high = 3000;
         sleepResult = r.nextInt(high - low) + low;
-        if(pageBody.getText().contains("The requested URL was rejected. Please consult with your administrador")); {
-            Assert.assertFalse(true,"Test failed because page is not loaded");
-        }
+        CustomLogger.logger.info("sleepResult: " + sleepResult);
     }
 
     @Step
     public void clickAccept() {
+        createRandomSleep();
         sleep(sleepResult);
-        acceptButtonBefore.click();
+        if (acceptButtonBefore.shouldBe(visible).exists()) {
+            acceptButtonBefore.click();
+        }
     }
 
     @Step
     public void selectRegionAndAccept() {
         sleep(sleepResult);
-        provinceSelection.click();
+        provinceSelection.shouldBe(visible).click();
+        sleep(sleepResult);
         acceptButton.click();
     }
 
     @Step
     public void selectCitaTypeAndAccept() {
         sleep(sleepResult);
-        if (citaRegionSelection.isDisplayed()) {
+        if (citaRegionSelection.shouldBe(visible).exists()) {
             citaRegionSelection.click();
+            sleep(sleepResult);
             citaTypeSelection.click();
+            sleep(sleepResult);
             acceptButton.scrollIntoView(true).click();
         }
     }
@@ -69,7 +73,9 @@ public class CitaPreviaActions extends CitaPreviaLocators {
         sleep(sleepResult);
         if (citaNie.isDisplayed()) {
             citaNie.sendKeys(nie);
+            sleep(sleepResult);
             citaName.sendKeys(name);
+            sleep(sleepResult);
             acceptButton2.click();
             getAndAttachScreenshot();
         }
@@ -81,8 +87,7 @@ public class CitaPreviaActions extends CitaPreviaLocators {
         getAndAttachScreenshot();
         if (citaInfo.isDisplayed()) {
             String text = citaInfo.getText();
-            Assert.assertTrue(text.contains("En este momento no hay citas disponibles"),
-                    "Expected text is not present but present text:\n" + text);
+            Assert.assertTrue(text.contains("En este momento no hay citas disponibles"), "Expected text is not present but present text:\n" + text);
             CustomLogger.logger.info("Cita info: " + text);
         }
         salirButton.click();

@@ -2,7 +2,7 @@
 <suite name="Suite">
     <listeners>
         <listener class-name="listener.CustomListener"/>
-        <listener class-name="listener.RetryListener"/>
+        <!--<listener class-name="listener.RetryListener"/>-->
     </listeners>
     <parameter name="projectId" value="1"/>
     <test name="Check Cita">
