@@ -5,7 +5,7 @@
         <listener class-name="listener.RetryListener"/>
     </listeners>
     <parameter name="projectId" value="1"/>
-    <test name="Google Search">
+    <test name="Cita Test">
         <parameter name="browser" value="Chrome"/>
         <parameter name="browserVersion" value="108"/>
         <packages>

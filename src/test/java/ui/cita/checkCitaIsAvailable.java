@@ -14,20 +14,20 @@ import static com.codeborne.selenide.Selenide.open;
 import static helper.CsvHelper.parseCsv;
 
 public class checkCitaIsAvailable extends AbstractBaseTest {
-    private final String nie = "Z0126832S";
-    private final String name = "Oleksandr Riaboshapka";
-    private final String csvPath = "src/test/resources/datafiles/users.csv";
     public final String url = "https://icp.administracionelectronica.gob.es/icpco/acOpcDirect";
+    private final String csvPath = "src/test/resources/datafiles/users.csv";
 
     @BeforeClass
     public void setUp() {
         open(url);
         citaPrevia.clickAccept();
     }
+
     @DataProvider
     public Iterator<Object[]> users() throws IOException {
         return parseCsv(csvPath);
     }
+
     @Test(dataProvider = "users")
     public void checkCitaIsAvailable(String nie, String name) {
         citaPrevia.selectRegionAndAccept();
@@ -39,7 +39,7 @@ public class checkCitaIsAvailable extends AbstractBaseTest {
     }
 
     @AfterClass
-    public void close() {
+    public void tearDown() {
         closeWebDriver();
     }
 }
