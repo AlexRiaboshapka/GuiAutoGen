@@ -18,7 +18,7 @@ public class RunnerConfig {
         Configuration.reportsFolder = "target/screenshots";
         Configuration.browserSize = "1920x1080";
         Configuration.browser = "Chrome";
-        Configuration.browserVersion = "107";
+        Configuration.browserVersion = "108";
         if (!globalModeDebug) {
             Configuration.remote = "http://localhost:4444/wd/hub";
             Configuration.browserCapabilities.setCapability("enableVNC", false);

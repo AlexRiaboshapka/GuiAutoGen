@@ -19,8 +19,8 @@ public class AbstractBaseTest {
     @BeforeClass
     @Parameters({"projectId", "Browser", "browserVersion"})
     public void setUp(@Optional("2") String projectId,
-                      @Optional("FireFox") String Browser,
-                      @Optional("107") String browserVersion) {
+                      @Optional("Chrome") String Browser,
+                      @Optional("108") String browserVersion) {
         config.setUpConfig(projectId, Browser, browserVersion);
     }
 }
