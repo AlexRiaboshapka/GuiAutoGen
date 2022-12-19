@@ -11,6 +11,7 @@ import java.util.Iterator;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.WebDriverRunner.source;
 import static helper.CsvHelper.parseCsv;
 
 public class checkCitaIsAvailable extends AbstractBaseTest {
@@ -20,6 +21,7 @@ public class checkCitaIsAvailable extends AbstractBaseTest {
     @BeforeClass
     public void setUp() {
         open(url);
+        System.out.println(source());
     }
 
     @DataProvider
