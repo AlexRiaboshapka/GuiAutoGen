@@ -1,0 +1,57 @@
+name: allure-testng-maven
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    types: [ opened, synchronize, reopened ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build-tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+          
+      - name: Start selenoid
+        uses: Xotabu4/selenoid-github-action@v2
+ 
+        
+      - name: Run Test
+        if: always()
+        run: mvn clean test "-Dsurefire.suiteXmlFiles=src/test/resources/testng.xml" "-Dtestng.dtd.http=true"
+        continue-on-error: true
+
+      - name: Get Allure history
+        uses: actions/checkout@v2
+        if: always()
+        continue-on-error: true
+        with:
+          ref: master
+          path: master
+
+      - name: Allure Report action from marketplace
+        uses: simple-elf/allure-report-action@master
+        if: always()
+        id: allure-report
+        with:
+          allure_results: target/allure-results
+          gh_pages: master
+          allure_report: allure-report
+          allure_history: allure-history
+
+      - name: Deploy report to Github Pages
+        if: always()
+        uses: AlexRiaboshapka/actions-master@v2
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: master
+          PUBLISH_DIR: allure-history
