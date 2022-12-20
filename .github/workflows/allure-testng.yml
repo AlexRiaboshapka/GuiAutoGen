@@ -23,7 +23,7 @@ jobs:
           release: 17
           
       - name: Start selenoid
-        uses: Xotabu4/selenoid-github-action@v2
+        uses: ajinx/selenoid@v2
 
       - name: Run Test
         if: always()
