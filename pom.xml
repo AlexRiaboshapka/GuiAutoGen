@@ -83,6 +83,13 @@
         </dependency>
 
         <dependency>
+            <groupId>org.selenide</groupId>
+            <artifactId>selenide-selenoid</artifactId>
+            <version>2.3.3</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
             <version>5.3.0</version>
