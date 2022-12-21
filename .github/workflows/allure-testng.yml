@@ -25,6 +25,7 @@ jobs:
           credentials_json: '${{ secrets.GOOGLE }}'
           create_credentials_file: true
           export_environment_variables: true
+          credentials_file_path: '/google/credentials.json'
 
       - name: 'Set up latest Oracle JDK 17'
         uses: oracle-actions/setup-java@v1

@@ -21,7 +21,6 @@ public class checkCitaIsAvailable extends AbstractBaseTest {
     @BeforeClass
     public void setUp() {
         open(url);
-        System.out.println(source());
     }
 
     @DataProvider
