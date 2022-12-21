@@ -16,44 +16,28 @@ jobs:
         with:
           fetch-depth: 0
 
+      - uses: 'actions/checkout@v3'
+
+      - id: 'auth'
+        name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v1'
+        with:
+          credentials_json: '${{ secrets.GOOGLE }}'
+          create_credentials_file: true
+          export_environment_variables: true
+
       - name: 'Set up latest Oracle JDK 17'
         uses: oracle-actions/setup-java@v1
         with:
           website: oracle.com
           release: 17
-          
+
       - name: Start selenoid
         uses: Xotabu4/selenoid-github-action@v2
       - uses: actions/checkout@v1
-      - run: npm ci
+
 
       - name: Run Test
         if: always()
         run: mvn clean test "-Dsurefire.suiteXmlFiles=src/test/resources/testng.xml" "-Dtestng.dtd.http=true"
-        continue-on-error: false
-
-      - name: Get Allure history
-        uses: actions/checkout@v2
-        if: always()
-        continue-on-error: false
-        with:
-          ref: report_result
-          path: report_result
-
-      - name: Allure Report action from marketplace
-        uses: simple-elf/allure-report-action@master
-        if: always()
-        id: allure-report
-        with:
-          allure_results: target/allure-results
-          gh_pages: report_result
-          allure_report: allure-report
-          allure_history: allure-history
-
-      - name: Deploy report to Github Pages
-        if: always()
-        uses: peaceiris/actions-gh-pages@v2
-        env:
-          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PUBLISH_BRANCH: report_result
-          PUBLISH_DIR: allure-history
+        continue-on-error: true
