@@ -32,6 +32,7 @@ public class GoogleSheetParser {
 
     private static Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws IOException {
         InputStream in = GoogleSheetParser.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
+        CustomLogger.logger.info("Credentials file path: " + CREDENTIALS_FILE_PATH);
         if (in == null) {
             throw new FileNotFoundException("Resource not found: " + CREDENTIALS_FILE_PATH);
         }
