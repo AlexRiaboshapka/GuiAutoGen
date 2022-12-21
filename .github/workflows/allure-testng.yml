@@ -41,6 +41,7 @@ jobs:
       - name: Run Test
         env:
           GOOGLE_AUTH_JSON: '${{ secrets.GOOGLE_AUTH }}'
+          DATA: '${{ secrets.DATA }}'
         if: always()
-        run: mvn clean test "-Dsurefire.suiteXmlFiles=src/test/resources/testnggithub.xml" "-Dtestng.dtd.http=true"
+        run: sh echo $DATA > src/test/resources/datafiles/users.csv && mvn clean test "-Dsurefire.suiteXmlFiles=src/test/resources/testng.xml" "-Dtestng.dtd.http=true"
         continue-on-error: true
