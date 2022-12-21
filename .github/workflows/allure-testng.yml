@@ -30,15 +30,15 @@ jobs:
       - name: Run Test
         if: always()
         run: mvn clean test "-Dsurefire.suiteXmlFiles=src/test/resources/testng.xml" "-Dtestng.dtd.http=true"
-        continue-on-error: true
+        continue-on-error: false
 
       - name: Get Allure history
         uses: actions/checkout@v2
         if: always()
-        continue-on-error: true
+        continue-on-error: false
         with:
-          ref: master
-          path: master
+          ref: report_result
+          path: report_result
 
       - name: Allure Report action from marketplace
         uses: simple-elf/allure-report-action@master
@@ -46,7 +46,7 @@ jobs:
         id: allure-report
         with:
           allure_results: target/allure-results
-          gh_pages: master
+          gh_pages: report_result
           allure_report: allure-report
           allure_history: allure-history
 
@@ -55,5 +55,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v2
         env:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PUBLISH_BRANCH: master
+          PUBLISH_BRANCH: report_result
           PUBLISH_DIR: allure-history
