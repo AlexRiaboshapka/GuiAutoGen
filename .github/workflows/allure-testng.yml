@@ -7,6 +7,8 @@ on:
     types: [ opened, synchronize, reopened ]
   workflow_dispatch:
 
+
+
 jobs:
   build:
     name: Build-tests
@@ -35,13 +37,42 @@ jobs:
 
       - name: Start selenoid
         uses: Xotabu4/selenoid-github-action@v2
-      - uses: actions/checkout@v1
+        continue-on-error: false
 
-
-      - name: Run Test
+      - name: Decrypt Google credentials.json
         env:
-          GOOGLE_AUTH_JSON: '${{ secrets.GOOGLE_AUTH }}'
-          DATA: '${{ secrets.DATA }}'
-        if: always()
-        run: sh pwd; ls; echo $DATA > src/test/resources/datafiles/users.csv && mvn clean test "-Dsurefire.suiteXmlFiles=src/test/resources/testng.xml" "-Dtestng.dtd.http=true"
+          CREDENTIALS_KEY: ${{ secrets.CREDENTIALS_KEY }}
+        run: |
+          mkdir $GITHUB_WORKSPACE/secrets
+          # --batch to prevent interactive command
+          # --yes to assume "yes" for questions
+          gpg --quiet --batch --yes --decrypt --passphrase="CREDENTIALS_KEY" \
+          --output $GITHUB_WORKSPACE/secrets/credentials.json credentials.json.gpg
+
+      -  run: |
+          gpg --quiet --batch --yes --decrypt --passphrase="CREDENTIALS_KEY" \
+          --output $GITHUB_WORKSPACE/secrets/credentials-key.json credentials-key.json.gpg
+
+      - name: Restore Maven cache
+        uses: skjolber/maven-cache-github-action@v1
         continue-on-error: true
+        with:
+          step: restore
+
+      - name: Run Tests
+        run: echo '${{ secrets.DATA }}' > 'src/test/resources/datafiles/users.csv' && mvn clean test "-Dsurefire.suiteXmlFiles=src/test/resources/testng.xml" "-Dtestng.dtd.http=true"
+        continue-on-error: true
+
+      - name: Save Maven cache
+        uses: skjolber/maven-cache-github-action@v1
+        continue-on-error: true
+        with:
+          step: save
+
+      - name: Deploy report to Github Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v2
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: report-result
+          PUBLISH_DIR: ./allure-history

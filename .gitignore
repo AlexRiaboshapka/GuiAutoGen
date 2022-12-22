@@ -69,6 +69,7 @@ hs_err_pid*
 
 
 *credentials.json
+*credentials-key.json
 tokens/
 .idea/
 /.DS_Store
