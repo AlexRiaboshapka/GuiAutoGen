@@ -33,11 +33,11 @@ jobs:
           mkdir $GITHUB_WORKSPACE/secrets
           # --batch to prevent interactive command
           # --yes to assume "yes" for questions
-          gpg --quiet --batch --yes --decrypt --passphrase="CREDENTIALS_KEY" \
+          gpg --quiet --batch --yes --decrypt --passphrase="$CREDENTIALS_KEY" \
           --output $GITHUB_WORKSPACE/secrets/credentials.json src/main/resources/google/credentials.json.gpg
 
       -  run: |
-          gpg --quiet --batch --yes --decrypt --passphrase="CREDENTIALS_KEY" \
+          gpg --quiet --batch --yes --decrypt --passphrase="$CREDENTIALS_KEY" \
           --output $GITHUB_WORKSPACE/secrets/credentials-key.json src/main/resources/google/credentials-key.json.gpg
 
       - name: Restore Maven cache
