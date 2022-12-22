@@ -36,7 +36,10 @@ jobs:
           gpg --quiet --batch --yes --decrypt --passphrase="$CREDENTIALS_KEY" \
           --output $GITHUB_WORKSPACE/secrets/credentials.json src/main/resources/google/credentials.json.gpg
 
-      -  run: |
+      - name: Decrypt Google credentials.json
+        env:
+          CREDENTIALS_KEY: ${{ secrets.CREDENTIALS_KEY }}
+        run: |
           gpg --quiet --batch --yes --decrypt --passphrase="$CREDENTIALS_KEY" \
           --output $GITHUB_WORKSPACE/secrets/credentials-key.json src/main/resources/google/credentials-key.json.gpg
 
@@ -47,7 +50,7 @@ jobs:
           step: restore
 
       - name: Run Tests
-        run: mvn clean test "-Dsurefire.suiteXmlFiles=src/test/resources/testng.xml" "-Dtestng.dtd.http=true"
+        run: mvn clean test "-Dsurefire.suiteXmlFiles=src/test/resources/testnggithub.xml" "-Dtestng.dtd.http=true"
         continue-on-error: true
 
       - name: Save Maven cache
