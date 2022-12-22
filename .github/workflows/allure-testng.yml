@@ -34,11 +34,11 @@ jobs:
           # --batch to prevent interactive command
           # --yes to assume "yes" for questions
           gpg --quiet --batch --yes --decrypt --passphrase="CREDENTIALS_KEY" \
-          --output $GITHUB_WORKSPACE/secrets/credentials.json credentials.json.gpg
+          --output $GITHUB_WORKSPACE/secrets/credentials.json src/main/resources/google/credentials.json.gpg
 
       -  run: |
           gpg --quiet --batch --yes --decrypt --passphrase="CREDENTIALS_KEY" \
-          --output $GITHUB_WORKSPACE/secrets/credentials-key.json credentials-key.json.gpg
+          --output $GITHUB_WORKSPACE/secrets/credentials-key.json src/main/resources/google/credentials-key.json.gpg
 
       - name: Restore Maven cache
         uses: skjolber/maven-cache-github-action@v1
@@ -47,7 +47,7 @@ jobs:
           step: restore
 
       - name: Run Tests
-        run: echo '${{ secrets.DATA }}' > 'src/test/resources/datafiles/users.csv' && mvn clean test "-Dsurefire.suiteXmlFiles=src/test/resources/testng.xml" "-Dtestng.dtd.http=true"
+        run: mvn clean test "-Dsurefire.suiteXmlFiles=src/test/resources/testng.xml" "-Dtestng.dtd.http=true"
         continue-on-error: true
 
       - name: Save Maven cache
