@@ -30,18 +30,17 @@ jobs:
         env:
           CREDENTIALS_KEY: ${{ secrets.CREDENTIALS_KEY }}
         run: |
-          mkdir $GITHUB_WORKSPACE/secrets
           # --batch to prevent interactive command
           # --yes to assume "yes" for questions
           gpg --quiet --batch --yes --decrypt --passphrase="$CREDENTIALS_KEY" \
-          --output $GITHUB_WORKSPACE/secrets/credentials.json src/main/resources/google/credentials.json.gpg
+          --output src/main/resources/google/credentials.json src/main/resources/google/credentials.json.gpg
 
-      - name: Decrypt Google credentials.json
+      - name: Decrypt Google credentials-key.json
         env:
           CREDENTIALS_KEY: ${{ secrets.CREDENTIALS_KEY }}
         run: |
           gpg --quiet --batch --yes --decrypt --passphrase="$CREDENTIALS_KEY" \
-          --output $GITHUB_WORKSPACE/secrets/credentials-key.json src/main/resources/google/credentials-key.json.gpg
+          --output src/main/resources/google/credentials-key.json src/main/resources/google/credentials-key.json.gpg
 
       - name: Restore Maven cache
         uses: skjolber/maven-cache-github-action@v1
