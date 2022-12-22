@@ -51,6 +51,7 @@ jobs:
       - name: Run Tests
         run: mvn clean test "-Dsurefire.suiteXmlFiles=src/test/resources/testnggithub.xml" "-Dtestng.dtd.http=true"
         continue-on-error: true
+        timeout-minutes: 3
 
       - name: Save Maven cache
         uses: skjolber/maven-cache-github-action@v1
