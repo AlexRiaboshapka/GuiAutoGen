@@ -28,7 +28,7 @@ public class GoogleSheetParser {
     private static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
     private static final String TOKENS_DIRECTORY_PATH = "tokens";
     private static final List<String> SCOPES = Collections.singletonList(SheetsScopes.SPREADSHEETS_READONLY);
-    private static final String CREDENTIALS_FILE_PATH = "/google/credentials-key.json";
+    private static final String CREDENTIALS_FILE_PATH = "/google/credentials.json";
 
     private static Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws IOException {
         InputStream in = GoogleSheetParser.class.getResourceAsStream(CREDENTIALS_FILE_PATH);

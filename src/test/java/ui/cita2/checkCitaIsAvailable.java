@@ -1,6 +1,6 @@
 package ui.cita2;
 
-import helper.GoogleSheetParser;
+import helper.GoogleSheetParserNew;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -28,7 +28,7 @@ public class checkCitaIsAvailable extends AbstractBaseTest {
     @DataProvider
     public Iterator<Object[]> testData() {
         ArrayList<Object[]> arrayList = new ArrayList<>();
-        List<List<Object>> lists = GoogleSheetParser.getGoogleSheetValue(sheetId, range);
+        List<List<Object>> lists = GoogleSheetParserNew.getGoogleSheetValue(sheetId, range);
         for (List<Object> list :
                 Objects.requireNonNull(lists)) {
             Object[] objects = list.toArray();
@@ -38,7 +38,7 @@ public class checkCitaIsAvailable extends AbstractBaseTest {
     }
 
     @Test(dataProvider = "testData")
-    public void checkCitaIsAvailable(String nie, String name) {
+    public void testCitaIsAvailable(String nie, String name) {
         citaPrevia.selectCitaTypeAndAccept();
         citaPrevia.clickEnterButton();
         citaPrevia.inputNieAndClickAccept(nie, name);
