@@ -34,7 +34,7 @@ jobs:
             browsers: chrome;firefox
             last-versions: 1
           attempt_limit: 3
-          attempt_delay: 2000
+          attempt_delay: 10000
 
       - name: Check Selenoid has been started
         run: curl http://localhost:4444/status
