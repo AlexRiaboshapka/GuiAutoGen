@@ -7,7 +7,7 @@ on:
     types: [ opened, synchronize, reopened ]
   workflow_dispatch:
   schedule:
-    - cron: '*/15 * * * *'
+    - cron: '*/20 * * * *'
 
 jobs:
   build:
@@ -25,15 +25,19 @@ jobs:
           java-version: '17'
           cache: 'maven'
 
-      - name: Start Selenoid
-        uses: n-ton4/selenoid-github-action@master
-        id: start-selenoid
-        continue-on-error: false
+
+      - uses: Wandalen/wretry.action@master
         with:
-          version: 1.8.2
-          args: -limit 10
-          browsers: chrome;firefox
-          last-versions: 1
+          action: n-ton4/selenoid-github-action@master
+          id: start-selenoid
+          with: |
+            version: 1.8.2
+            args: -limit 10
+            browsers: chrome;firefox
+            last-versions: 1
+          attempt_limit: 3
+          attempt_delay: 2000
+
       - name: Check Selenoid has been started
         run: curl http://localhost:4444/status
         continue-on-error: false
