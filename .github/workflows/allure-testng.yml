@@ -25,11 +25,9 @@ jobs:
           java-version: '17'
           cache: 'maven'
 
-
       - uses: Wandalen/wretry.action@master
         with:
           action: n-ton4/selenoid-github-action@master
-          id: start-selenoid
           with: |
             version: 1.8.2
             args: -limit 10
