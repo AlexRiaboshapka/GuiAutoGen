@@ -15,7 +15,7 @@ import java.util.Objects;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.Selenide.open;
 
-public class checkCitaIsAvailable extends AbstractBaseTest {
+public class CitaTest extends AbstractBaseTest {
     public final String url = "https://icp.administracionelectronica.gob.es/icpco/citar?p=3&locale=es";
     private final String sheetId = "1aVKQ3hIoOupx685h1NgunO4w_wMnVJofu4Mr5MKxYR0";
     private final String range = "Sheet1!A2:B5";

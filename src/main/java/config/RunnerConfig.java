@@ -7,7 +7,6 @@ import io.qameta.allure.selenide.AllureSelenide;
 import logger.CustomLogger;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static global.Global.globalModeDebug;
 
 public class RunnerConfig {

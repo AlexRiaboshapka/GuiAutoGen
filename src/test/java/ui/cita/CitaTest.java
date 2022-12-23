@@ -11,10 +11,9 @@ import java.util.Iterator;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.WebDriverRunner.source;
 import static helper.CsvHelper.parseCsv;
 
-public class checkCitaIsAvailable extends AbstractBaseTest {
+public class CitaTest extends AbstractBaseTest {
     public final String url = "https://icp.administracionelectronica.gob.es/icpco/citar?p=3&locale=es";
     private final String csvPath = "src/test/resources/datafiles/users.csv";
 
