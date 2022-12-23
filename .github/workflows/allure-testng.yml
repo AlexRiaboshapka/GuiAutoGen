@@ -30,7 +30,7 @@ jobs:
         id: start-selenoid
         continue-on-error: false
         with:
-          version: 1.10.1
+          version: 1.8.2
           args: -limit 10
           browsers: chrome;firefox
           last-versions: 1
