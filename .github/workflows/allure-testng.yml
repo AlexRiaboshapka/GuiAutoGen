@@ -38,7 +38,12 @@ jobs:
 
       - name: Check Selenoid has been started
         id: check-selenoid
-        run: curl http://localhost:4444/status
+        run: |
+          curl http://localhost:4444/status &&
+          OUTPUT=$(echo $?) &&
+          echo "::set-output name=OUTPUT::$OUTPUT"
+
+
         continue-on-error: true
 
       - name: Decrypt Google credentials-key.json
@@ -63,7 +68,7 @@ jobs:
 
       - name: Get Allure history
         uses: actions/checkout@v2
-        if: steps.check-selenoid.outcome == 'success'
+        if: steps.check-selenoid.outputs.OUTPUT == 0
         continue-on-error: true
         with:
           ref: gh-pages
@@ -71,7 +76,7 @@ jobs:
 
       - name: Allure Report action from marketplace
         uses: simple-elf/allure-report-action@master
-        if: steps.check-selenoid.outcome == 'success'
+        if: steps.check-selenoid.outputs.OUTPUT == 0
         id: allure-report
         with:
           allure_results: target/allure-results
@@ -80,7 +85,7 @@ jobs:
           allure_history: allure-history
 
       - name: Deploy report to Github Pages
-        if: steps.check-selenoid.outcome == 'success'
+        if: steps.check-selenoid.outputs.OUTPUT == 0
         uses: peaceiris/actions-gh-pages@v2
         env:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
