@@ -1,9 +1,11 @@
 # Java Test the start
 Used Technologies:
 - Java 
-- Selenide
-- TestNG
-- Gitgub Actions
 - Maven
-- Allure
-- Selenoid
+- TestNG
+- Selenide
+- Allure report
+- Selenoid (Selenium Grid)
+- Google Sheets API for Data Driven Testing
+- Gitgub Actions for execution
+- Gitgub Pages to store the results

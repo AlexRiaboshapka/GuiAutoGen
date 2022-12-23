@@ -6,6 +6,8 @@ on:
   pull_request:
     types: [ opened, synchronize, reopened ]
   workflow_dispatch:
+  schedule:
+    - cron: '*/15 * * * *'
 
 jobs:
   build:
@@ -21,6 +23,7 @@ jobs:
         with:
           website: oracle.com
           release: 17
+          cache: maven
 
       - name: Start selenoid
         uses: Xotabu4/selenoid-github-action@v2
@@ -33,22 +36,18 @@ jobs:
           gpg --quiet --batch --yes --decrypt --passphrase="$CREDENTIALS_KEY" \
           --output src/main/resources/google/credentials-key.json src/main/resources/google/credentials-key.json.gpg
 
-      - name: Restore Maven cache
-        uses: skjolber/maven-cache-github-action@v1
-        continue-on-error: true
+      - name: Cache local Maven repository
+        uses: actions/cache@v3
         with:
-          step: restore
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
 
       - name: Run Tests
         run: mvn clean test "-Dsurefire.suiteXmlFiles=src/test/resources/testnggithub.xml" "-Dtestng.dtd.http=true"
         continue-on-error: true
         timeout-minutes: 3
-
-      - name: Save Maven cache
-        uses: skjolber/maven-cache-github-action@v1
-        continue-on-error: true
-        with:
-          step: save
 
       - name: Get Allure history
         uses: actions/checkout@v2
