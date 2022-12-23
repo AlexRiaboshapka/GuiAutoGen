@@ -42,9 +42,7 @@ jobs:
           curl http://localhost:4444/status &&
           OUTPUT=$(echo $?) &&
           echo "::set-output name=OUTPUT::$OUTPUT"
-
-
-        continue-on-error: true
+        continue-on-error: false
 
       - name: Decrypt Google credentials-key.json
         env:
