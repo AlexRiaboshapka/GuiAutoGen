@@ -68,15 +68,15 @@ jobs:
 
       - name: Get Allure history
         uses: actions/checkout@v2
-        if: steps.check-selenoid.outputs.OUTPUT == 0
+        if: always()
         continue-on-error: true
         with:
           ref: gh-pages
           path: gh-pages
 
-      - name: Allure Report action from marketplace
+      - name: Test marketplace action
         uses: simple-elf/allure-report-action@master
-        if: steps.check-selenoid.outputs.OUTPUT == 0
+        if: always()
         id: allure-report
         with:
           allure_results: target/allure-results
