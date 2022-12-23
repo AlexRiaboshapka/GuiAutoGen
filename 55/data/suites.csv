@@ -1,0 +1,2 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"failed","Fri Dec 23 17:43:27 GMT 2022","Fri Dec 23 17:43:55 GMT 2022","27272","Suite","Check Cita","ui.cita2.checkCitaIsAvailable","ui.cita2.checkCitaIsAvailable","testCitaIsAvailable","testCitaIsAvailable",""
