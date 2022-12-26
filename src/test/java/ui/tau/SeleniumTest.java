@@ -20,7 +20,7 @@ public class SeleniumTest {
 
     @Test
     public void openGoogleAndSearch() {
-        @SuppressWarnings("SpellCheckingInspection") String expectedTitle = "Selenide - Buscar con Google";
+        String expectedTitle = "Selenide - Buscar con Google";
         SelenideElement searchInput = $(byXpath("//input[@name='q']"));
         searchInput.sendKeys("Selenide");
         searchInput.pressEnter();
