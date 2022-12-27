@@ -1,0 +1,2 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Tue Dec 27 21:53:50 GMT 2022","Tue Dec 27 21:54:05 GMT 2022","15021","Suite","Check Cita","ui.cita2.CitaTest","ui.cita2.CitaTest","testCitaIsAvailable","testCitaIsAvailable",""
