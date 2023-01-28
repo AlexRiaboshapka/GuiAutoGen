@@ -1,0 +1,1 @@
+[{"uid":"b1dc0212b262c536","name":"testCitaIsAvailable","time":{"start":1674916651710,"stop":1674916651712,"duration":2},"status":"skipped","severity":"normal"},{"uid":"bc507d5defae05a6","name":"setUp","time":{"start":1674916650056,"stop":1674916650061,"duration":5},"status":"broken","severity":"normal"}]
