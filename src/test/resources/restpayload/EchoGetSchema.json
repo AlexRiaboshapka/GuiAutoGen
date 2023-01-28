@@ -1,0 +1,145 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "type": "object",
+  "default": {},
+  "title": "Root Schema",
+  "required": [
+    "args",
+    "data",
+    "files",
+    "form",
+    "headers",
+    "json",
+    "url"
+  ],
+  "properties": {
+    "args": {
+      "type": "object",
+      "default": {},
+      "title": "The args Schema",
+      "properties": {}
+    },
+    "data": {
+      "type": "string",
+      "default": "",
+      "title": "The data Schema"
+    },
+    "files": {
+      "type": "object",
+      "default": {},
+      "title": "The files Schema",
+      "required": [],
+      "properties": {}
+    },
+    "form": {
+      "type": "object",
+      "default": {},
+      "title": "The form Schema",
+      "required": [
+        "foo1",
+        "foo2"
+      ],
+      "properties": {
+        "foo1": {
+          "type": "string",
+          "default": "",
+          "title": "The foo1 Schema"
+        },
+        "foo2": {
+          "type": "string",
+          "default": "",
+          "title": "The foo2 Schema"
+        }
+      }
+    },
+    "headers": {
+      "type": "object",
+      "default": {},
+      "title": "The headers Schema",
+      "required": [
+        "x-forwarded-proto",
+        "x-forwarded-port",
+        "host",
+        "x-amzn-trace-id",
+        "content-length",
+        "accept",
+        "content-type",
+        "user-agent",
+        "accept-encoding"
+      ],
+      "properties": {
+        "x-forwarded-proto": {
+          "type": "string",
+          "default": "",
+          "title": "The x-forwarded-proto Schema"
+        },
+        "x-forwarded-port": {
+          "type": "string",
+          "default": "",
+          "title": "The x-forwarded-port Schema"
+        },
+        "host": {
+          "type": "string",
+          "default": "",
+          "title": "The host Schema"
+        },
+        "x-amzn-trace-id": {
+          "type": "string",
+          "default": "",
+          "title": "The x-amzn-trace-id Schema"
+        },
+        "content-length": {
+          "type": "string",
+          "default": "",
+          "title": "The content-length Schema"
+        },
+        "accept": {
+          "type": "string",
+          "default": "",
+          "title": "The accept Schema"
+        },
+        "content-type": {
+          "type": "string",
+          "default": "",
+          "title": "The content-type Schema"
+        },
+        "user-agent": {
+          "type": "string",
+          "default": "",
+          "title": "The user-agent Schema"
+        },
+        "accept-encoding": {
+          "type": "string",
+          "default": "",
+          "title": "The accept-encoding Schema"
+        }
+      },
+      "json": {
+        "type": "object",
+        "default": {},
+        "title": "The json Schema",
+        "required": [
+          "foo1",
+          "foo2"
+        ],
+        "properties": {
+          "foo1": {
+            "type": "string",
+            "default": "",
+            "title": "The foo1 Schema"
+          },
+          "foo2": {
+            "type": "string",
+            "default": "",
+            "title": "The foo2 Schema"
+          }
+        }
+      },
+      "url": {
+        "type": "string",
+        "default": "",
+        "title": "The url Schema"
+      }
+    }
+  }
+}
