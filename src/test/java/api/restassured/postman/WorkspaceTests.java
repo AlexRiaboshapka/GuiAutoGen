@@ -11,6 +11,9 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,9 +27,11 @@ import static org.hamcrest.Matchers.matchesPattern;
 
 public class WorkspaceTests {
     @BeforeClass
-    public void setup() {
+    public void setup() throws IOException {
+        Path path = Path.of("src/test/resources/credentials-key.json");
+
         RequestSpecBuilder requestSpecBuilder = new RequestSpecBuilder().setBaseUri("https://api.getpostman.com")
-                .addHeader("x-api-key", "PMAK-63d1ab57fc57d065cb636e63-67f32cf75b2e865aeb13ccc5bd7af8bcd7")
+                .addHeader("x-api-key", Files.readString(path))
                 .log(LogDetail.ALL);
         RestAssured.requestSpecification = requestSpecBuilder.build();
 
@@ -79,7 +84,7 @@ public class WorkspaceTests {
 
     @Test
     public void deleteWorkspacesDelete() {
-        String id = "66aabaca-bf44-4355-9815-37bde3e63e25";
+        String id = "c72ed99d-95d3-4a18-871b-96afe17baddf";
 
         with()
                 .pathParam("id", id)
