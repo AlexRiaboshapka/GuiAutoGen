@@ -1,5 +1,7 @@
 package api.restassured.postman;
 
+import api.pojo.Workspace;
+import api.pojo.WorkspaceRoot;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.RestAssured;
@@ -8,6 +10,7 @@ import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.response.Response;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.io.File;
@@ -32,6 +35,7 @@ public class WorkspaceTests {
 
         RequestSpecBuilder requestSpecBuilder = new RequestSpecBuilder().setBaseUri("https://api.getpostman.com")
                 .addHeader("x-api-key", Files.readString(path))
+                .addHeader("Content-Type", "application/json")
                 .log(LogDetail.ALL);
         RestAssured.requestSpecification = requestSpecBuilder.build();
 
@@ -43,6 +47,11 @@ public class WorkspaceTests {
     @Test
     public void getWorkspaces() {
         given().when().get("/workspaces");
+    }
+
+    @Test
+    public void getCollections() {
+        given().when().get("/collections");
     }
 
 
@@ -140,5 +149,39 @@ public class WorkspaceTests {
 
         assertThat(response.path("workspace.name"), equalTo("myWorkspace2"));
         assertThat(response.path("workspace.id"), matchesPattern("^[a-z0-9-]{36}$"));
+    }
+
+    @Test
+    public void addWorkspacesPostPojo() {
+        Workspace workspace = new Workspace("myWorkspace2", "personal", "Test from postman123");
+        WorkspaceRoot workspaceRoot = new WorkspaceRoot(workspace);
+
+
+        WorkspaceRoot responseDeserializedWorkspaceRoot = with().body(workspaceRoot)
+                .when().post("/workspaces")
+                .then().log().all()
+                .extract().response().as(WorkspaceRoot.class);
+
+        assertThat(responseDeserializedWorkspaceRoot.getWorkspace().getName(), equalTo(workspace.getName()));
+        assertThat(responseDeserializedWorkspaceRoot.getWorkspace().getId(), matchesPattern("^[a-z0-9-]{36}$"));
+    }
+
+    @Test(dataProvider = "workspaces")
+    public void addWorkspacesPostPojoSerializeDeserialize(String name, String type, String description) {
+        Workspace workspace = new Workspace(name, type, description);
+        WorkspaceRoot workspaceRoot = new WorkspaceRoot(workspace);
+
+        WorkspaceRoot responseDeserializedWorkspaceRoot = with().body(workspaceRoot)
+                .when().post("/workspaces")
+                .then().log().all()
+                .extract().response().as(WorkspaceRoot.class);
+
+        assertThat(responseDeserializedWorkspaceRoot.getWorkspace().getName(), equalTo(workspace.getName()));
+        assertThat(responseDeserializedWorkspaceRoot.getWorkspace().getId(), matchesPattern("^[a-z0-9-]{36}$"));
+    }
+
+    @DataProvider(name = "workspaces")
+    public Object[][] getWorkspace() {
+        return new Object[][]{{"myWorkspace2", "personal", "Test from postman123"}, {"myWorkspace3", "team", "Test from postman1234"}};
     }
 }

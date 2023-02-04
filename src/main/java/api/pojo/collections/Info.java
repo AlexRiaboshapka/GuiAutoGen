@@ -1,2 +1,19 @@
-package api.pojo.collections;public class Info {
+package api.pojo.collections;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Info {
+    private String description;
+    private String name;
+    private String schema;
+
 }

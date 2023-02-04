@@ -17,7 +17,7 @@ public class GoogleSearchTest extends AbstractBaseTest {
     @BeforeMethod
     public void setUp() {
         open(googleSearchUrl);
-        googleSearchPage.clickAcceptCookies();
+        //googleSearchPage.clickAcceptCookies();
     }
 
     @Test

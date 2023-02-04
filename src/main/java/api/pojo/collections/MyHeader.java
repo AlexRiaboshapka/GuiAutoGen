@@ -9,7 +9,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class HeaderRoot {
+public class MyHeader {
     private String key;
     private String value;
+    private String description;
 }

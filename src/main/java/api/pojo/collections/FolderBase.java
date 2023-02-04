@@ -1,21 +1,29 @@
 package api.pojo.collections;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.Setter;
-
-import java.util.List;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
+@NonNull
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Folder {
+public  abstract class FolderBase {
     private String name;
     private String description;
-    private List<Object> item;
+
+    protected FolderBase(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
+    protected FolderBase(String name) {
+        this.name = name;
+    }
+
+    protected FolderBase() {
+
+    }
 
 }

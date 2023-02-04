@@ -7,7 +7,6 @@ import java.io.File;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.config.RestAssuredConfig.config;
-import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 
 public class QueryParametersTests {
@@ -55,10 +54,9 @@ public class QueryParametersTests {
                 .when().post("/post")
                 .then().log().all()
                 .assertThat().statusCode(200);
-                //.body(matchesJsonSchemaInClasspath("restpayload/EchoGetSchema.json"));
+        //.body(matchesJsonSchemaInClasspath("restpayload/EchoGetSchema.json"));
 
     }
-
 
 
 }

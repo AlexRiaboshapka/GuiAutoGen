@@ -13,8 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class MyRequest {
-    private String url;
+public abstract class MyRequestBase {
     private String method;
     @NonNull
     private List<MyHeader> header;

@@ -9,6 +9,6 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CollectionRootReseponse {
-    private Collection collection;
+public class CollectionRootResponse implements CollectionRootBase {
+    private CollectionResponse collection;
 }
