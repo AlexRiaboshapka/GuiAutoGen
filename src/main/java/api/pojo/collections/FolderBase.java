@@ -1,15 +1,16 @@
 package api.pojo.collections;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 
 @Getter
 @Setter
-@NonNull
 @JsonIgnoreProperties(ignoreUnknown = true)
-public  abstract class FolderBase {
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
+public abstract class FolderBase {
     private String name;
     private String description;
 
@@ -23,7 +24,6 @@ public  abstract class FolderBase {
     }
 
     protected FolderBase() {
-
     }
 
 }

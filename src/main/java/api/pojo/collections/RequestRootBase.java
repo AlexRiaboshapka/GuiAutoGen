@@ -6,8 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
 @NoArgsConstructor
@@ -15,14 +13,9 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public abstract class RequestRootBase {
     private String name;
-    private List<Object> response;
 
     protected RequestRootBase(String name) {
         this.name = name;
     }
 
-    protected RequestRootBase(String name, List<Object> response) {
-        this.name = name;
-        this.response = response;
-    }
 }

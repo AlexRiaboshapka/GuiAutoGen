@@ -1,5 +1,6 @@
 package api.pojo.collections;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
@@ -9,6 +10,7 @@ import lombok.*;
 @RequiredArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class MyBody {
     private String mode;
     private String raw;
