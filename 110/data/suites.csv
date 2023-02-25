@@ -1,0 +1,3 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"skipped","Sat Feb 25 21:47:44 GMT 2023","Sat Feb 25 21:47:44 GMT 2023","2","Suite","Check Cita","ui.cita2.CitaTest","ui.cita2.CitaTest","testCitaIsAvailable","testCitaIsAvailable",""
+"broken","Sat Feb 25 21:47:42 GMT 2023","Sat Feb 25 21:47:42 GMT 2023","3","Suite","Check Cita","ui.cita2.CitaTest","ui.cita2.CitaTest","setUp","setUp",""
